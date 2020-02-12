@@ -4,7 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -46,10 +50,27 @@ public class LoginTests {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() {
+	public void validLoginTest() throws InterruptedException {
 		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
+		loginPOM.password1();
+		loginPOM.password2();
+		loginPOM.password3();
+		loginPOM.password4();
+		loginPOM.clickLoginBtn();
+		
+		
+		Thread.sleep(3000);
+		loginPOM.messagenav();
+		loginPOM.messages();
+		WebElement a=driver.findElement(By.id("messageBoxSelect"));
+	    Select sel =new Select(a);
+	    sel.selectByValue("INBOX");
+		
+	    WebElement b=driver.findElement(By.id("categoriesSelect"));
+	    Select sel1 =new Select(b);
+	    sel.selectByIndex(1);
+	    Thread.sleep(1000);
+	     loginPOM.messagedet();
 		screenShot.captureScreenShot("First");
 	}
 }
