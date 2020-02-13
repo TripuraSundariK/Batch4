@@ -8,7 +8,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -47,30 +47,44 @@ public class LoginTests {
 	@AfterMethod
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
-		driver.quit();
+		//driver.quit();
 	}
 	@Test
-	public void validLoginTest() throws InterruptedException {
+	public void validLoginTest() throws InterruptedException   {
 		loginPOM.sendUserName("admin");
-		loginPOM.password1();
-		loginPOM.password2();
-		loginPOM.password3();
-		loginPOM.password4();
-		loginPOM.clickLoginBtn();
-		
-		
-		Thread.sleep(3000);
-		loginPOM.messagenav();
-		loginPOM.messages();
-		WebElement a=driver.findElement(By.id("messageBoxSelect"));
-	    Select sel =new Select(a);
-	    sel.selectByValue("INBOX");
-		
-	    WebElement b=driver.findElement(By.id("categoriesSelect"));
-	    Select sel1 =new Select(b);
-	    sel.selectByIndex(1);
-	    Thread.sleep(1000);
-	     loginPOM.messagedet();
-		screenShot.captureScreenShot("First");
+		loginPOM.Password1();
+		loginPOM.Password2();
+		loginPOM.Password3();
+		loginPOM.Password4();
+		loginPOM.clickLoginBtn(); 
+		loginPOM.messagesBtn();
+		loginPOM.messages1Btn();
+		loginPOM.loginBtn1();
+		loginPOM.sendusername("kumar");
+		loginPOM.sendname("kumar");
+		loginPOM.sendText("hiii");
+		loginPOM.sendbody("hello");
+		loginPOM.loginBtn2(); 
+		Alert a=driver.switchTo().alert();
+		a.accept();
+		loginPOM.logoutBtn2();
+		Alert a1=driver.switchTo().alert();
+		a1.accept();
+		loginPOM.sendUserName1("kumar");
+		loginPOM.Passwordd1();
+		loginPOM.Passwordd2();
+		loginPOM.Passwordd3();
+		loginPOM.Passwordd4();
+		loginPOM.clickLoginBtn11(); 
+		loginPOM.personalBtn();
+		loginPOM.msgBtn();
+		loginPOM.msgdetails();
+		loginPOM.back();
+		loginPOM.logoutt();
+		Alert b1=driver.switchTo().alert();
+		b1.accept();
+	
+		//screenShot.captureScreenShot("First");
 	}
+	
 }
