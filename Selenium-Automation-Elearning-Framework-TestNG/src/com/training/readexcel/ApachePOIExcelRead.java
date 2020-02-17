@@ -61,7 +61,7 @@ public class ApachePOIExcelRead {
 					switch (cell.getCellType()) {
 
 					case Cell.CELL_TYPE_NUMERIC:
-						
+						//in Selenium sendkeys accept only string values so that here we need to convert
 						if(((Double) cell.getNumericCellValue()).toString()!=null){
 							tempList1[cellCount] = ((Double) cell.getNumericCellValue()).toString(); 
 						} 
@@ -87,15 +87,6 @@ public class ApachePOIExcelRead {
 
 		return list1;
 	}
-
-	public static void main(String[] args) {
-		String fileName = "C:/Users/Naveen/Desktop/Testing.xlsx";
-		
-		for(String [] temp : new ApachePOIExcelRead().getExcelContent(fileName)){
-			for(String  tt : temp){
-				System.out.println(tt);
-			}
-		}
-
-	}
 }
+
+	

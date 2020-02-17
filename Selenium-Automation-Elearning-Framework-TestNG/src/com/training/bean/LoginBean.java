@@ -1,37 +1,46 @@
 package com.training.bean;
 
 public class LoginBean {
-	private String userName;
-	private String password;
+	private String memberUsername;
+	private String Amount;
+	private String Description;
 
 	public LoginBean() {
 	}
 
-	public LoginBean(String userName, String password) {
+	public LoginBean( String memberUsername,String Amount,String Description) {
 		super();
-		this.userName = userName;
-		this.password = password;
+		this.memberUsername =memberUsername;
+		this.Amount = Amount;
+		this.Description=Description;
+	}
+	public String getmemberUsername() {
+		return memberUsername;
 	}
 
-	public String getUserName() {
-		return userName;
+	public void setmemberUsername(String memberUsername) {
+		this.memberUsername =memberUsername;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getAmount() {
+		return Amount;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setAmount(String Amount) {
+		this.Amount = Amount;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	
+	public String getDescription() {
+		return Description;
 	}
 
+	public void setDescription(String Description) {
+		this.Description =Description;
+	}
 	@Override
 	public String toString() {
-		return "LoginBean [userName=" + userName + ", password=" + password + "]";
+		return "LoginBean [memberUsername="+memberUsername+" , Amount=" + Amount + ", Description="+Description+"]";
 	}
 
 }
