@@ -4,26 +4,26 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
-import com.training.pom.LoginSimplePOM;
+import com.training.pom.LoginComplexPOM11;
+
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginSimpleTests11 {
+public class LoginComplexTests11 {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginSimplePOM loginPOM;
+	private LoginComplexPOM11 LoginComplexPOM11 ;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -37,7 +37,7 @@ public class LoginSimpleTests11 {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginSimplePOM(driver); 
+		LoginComplexPOM11 = new LoginComplexPOM11(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -49,28 +49,32 @@ public class LoginSimpleTests11 {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test
-	public void validLoginTest() throws InterruptedException {
-		loginPOM.sendUserName("admin");
-		loginPOM.password1();
-		loginPOM.password2();
-		loginPOM.password3();
-		loginPOM.password4();
-		loginPOM.clickLoginBtn();
+	@Test(dataProvider="db-inputs",dataProviderClass=LoginDataProviders.class)
+	
+	public void validLoginTest(String memberUsername, String memberName, String amount, String description) throws Exception {
+		LoginComplexPOM11.sendUsername("admin");
 		
+		LoginComplexPOM11.password1();
+		LoginComplexPOM11.password2();
+		LoginComplexPOM11.password3();
+		LoginComplexPOM11.password4();
+		LoginComplexPOM11.clickLoginBtn();
+		LoginComplexPOM11.clickAccount();
+		LoginComplexPOM11.memberPaym();
+		LoginComplexPOM11.memberUsername(memberUsername);
+		Thread.sleep(3000);
+		LoginComplexPOM11.memberName(memberName);
 		
 		Thread.sleep(3000);
-		loginPOM.messagenav();
-		loginPOM.messages();
-		WebElement a=driver.findElement(By.id("messageBoxSelect"));
-	    Select sel =new Select(a);
-	    sel.selectByValue("INBOX");
-		
-	    WebElement b=driver.findElement(By.id("categoriesSelect"));
-	    Select sel1 =new Select(b);
-	    sel.selectByIndex(1);
-	    Thread.sleep(1000);
-	     loginPOM.messagedet();
+		LoginComplexPOM11.amount(amount);
+		Thread.sleep(3000);
+		LoginComplexPOM11.sel();
+		LoginComplexPOM11.description(description);
+		LoginComplexPOM11.submitBtn1();
+		LoginComplexPOM11.submitBtn2();
+		 
+		 
 		screenShot.captureScreenShot("First");
+		
 	}
 }
